@@ -5,6 +5,10 @@ class IGUIDrawer:
 
     # Functions to override in inherited classes:
 
+    def initialize(self):
+        raise RuntimeError("Can't find override for function"
+                           " initialize(...) from interface IGUIDrawer")
+
     def draw_an_obstacle(self, obstacle_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " draw_an_obstacle(...) from interface IGUIDrawer")
