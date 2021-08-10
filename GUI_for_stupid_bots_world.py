@@ -7,7 +7,7 @@ class Window(QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
 
-        self.setWindowTitle("ТАНКИ ОНЛАЙН БЕЗ СМС И РЕГИСТРАЦИИ")
+        self.setWindowTitle("ТАНКИ ОНЛАЙН БЕЗ СМС И РЕГИСТРАЦИИ БЕСПЛАТНО")
         self.setGeometry(100, 60, 900, 540)
 
         self.main_text = QtWidgets.QLabel(self)
