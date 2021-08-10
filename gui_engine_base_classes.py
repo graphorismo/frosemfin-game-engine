@@ -28,3 +28,7 @@ class IGUIDrawer:
     def clear_screen(self):
         raise RuntimeError("Can't find override for function"
                            " clear_screen(...) from interface IGUIDrawer")
+
+    def stop(self):
+        raise RuntimeError("Can't find override for function"
+                           " stop(...) from interface IGUIDrawer")
