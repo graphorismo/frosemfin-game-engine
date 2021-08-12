@@ -27,7 +27,7 @@ class PlayerController:
      def __init__(self, keyboard: IKeyboard):
          self.keyboard = keyboard
 
-     def modify_data_of_the_player_correspond_to_his_last_action(self, player_data : BodyData):
+     def react_to_the_last_players_action(self, player_data : BodyData):
          last_player_action = self.keyboard.get_the_last_player_action()
          if last_player_action.action_type is PlayerActionTypeEnum.NOTHING:
              pass
