@@ -7,6 +7,10 @@ class IDataStorage:
 
     # Functions to override in inherited classes:
 
+    def get_data_of_all_entities(self) -> list[EntityData]:
+        raise RuntimeError("Can't find override for function"
+                           " get_data_of_all_entities(...) from interface IDataStorage")
+
     def get_data_of_all_projectiles(self) -> list[ProjectileData]:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_projectiles(...) from interface IDataStorage")
