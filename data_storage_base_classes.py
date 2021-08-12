@@ -15,7 +15,7 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_projectiles(...) from interface IDataStorage")
 
-    def edit_or_create_data_of_projectiles(self, projectiles: list[ProjectileData]):
+    def add_data_of_projectiles(self, projectiles: list[ProjectileData]):
         raise RuntimeError("Can't find override for function"
                            " edit_or_create_data_of_projectiles(...) from interface IDataStorage")
 
@@ -23,7 +23,7 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_bodies_of_bots(...) from interface IDataStorage")
 
-    def edit_or_create_data_of_bodies_of_bots(self, bodies_of_bots: list[BodyData]):
+    def add_data_of_bodies_of_bots(self, bodies_of_bots: list[BodyData]):
         raise RuntimeError("Can't find override for function"
                            " edit_or_create_data_of_bodies_of_bots(...) from interface IDataStorage")
 
@@ -31,7 +31,7 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_all_bodies_of_obstacles(...) from interface IDataStorage")
 
-    def edit_or_create_data_of_bodies_of_obstacles(self, bodies_of_bots: list[BodyData]):
+    def add_data_of_bodies_of_obstacles(self, bodies_of_bots: list[BodyData]):
         raise RuntimeError("Can't find override for function"
                            " edit_or_create_data_of_bodies_of_obstacles(...) from interface IDataStorage")
 
@@ -39,6 +39,6 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_the_body_of_the_player(...) from interface IDataStorage")
 
-    def edit_the_player_body_data(self, player_body_data: BodyData):
+    def add_the_player_body_data(self, player_body_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " edit_the_player_body_data(...) from interface IDataStorage")
