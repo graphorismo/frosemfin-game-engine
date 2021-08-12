@@ -7,7 +7,9 @@ from common_classes import *
 from time import sleep
 
 import turtle
-
+turtle.reset()
+turtle.tracer(0, 0)
+turtle.hideturtle()
 """
 import sys
 
@@ -39,11 +41,11 @@ class GUIActions(IGUIDrawer):
         window.show()
         sys.exit(app.exec_())
         """
-        turtle.tracer(1, 0)
-        turtle.reset()
-        turtle.screensize(self.x, self.y)
 
-        turtle.up()
+        turtle.screensize(self.x, self.y)
+        turtle.color("black")
+
+        turtle.penup()
         turtle.goto(0-(self.x/2), 0-(self.y/2))
         turtle.setheading(0)
 
@@ -55,44 +57,91 @@ class GUIActions(IGUIDrawer):
             turtle.right(90)
             turtle.forward(self.len_square)
 
-        turtle.up()
+        turtle.penup()
         turtle.goto(0 - (self.x / 2), 0 + (self.y / 2))
         turtle.setheading(0)
 
         for i in range(self.squarey + 1):
-            turtle.down()
+            turtle.pendown()
             turtle.forward(self.x)
             turtle.back(self.x)
             turtle.right(90)
             turtle.forward(self.len_square)
             turtle.left(90)
 
-        sleep(3)
+        turtle.penup()
+        turtle.update()
 
-    def draw_an_obstacle(self, obstacle_data: BodyData):
-        raise RuntimeError("Can't find override for function"
-                           " draw_an_obstacle(...) from interface IGUIDrawer")
+    def draw_an_obstacle(self, x, y):
+        turtle.color("black")
 
-    def draw_a_projectile(self, projectile_data: ProjectileData):
-        raise RuntimeError("Can't find override for function"
-                           " draw_a_projectile(...) from interface IGUIDrawer")
+        turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
+        turtle.setheading(0)
+        turtle.pendown()
 
-    def draw_a_bot(self, bot_data: BodyData):
-        raise RuntimeError("Can't find override for function"
-                           " draw_a_bot(...) from interface IGUIDrawer")
+        turtle.begin_fill()
+        for i in range(4):
+            turtle.forward(self.len_square)
+            turtle.left(90)
+        turtle.end_fill()
 
-    def draw_a_player(self, player_data: BodyData):
-        raise RuntimeError("Can't find override for function"
-                           " draw_a_player(...) from interface IGUIDrawer")
+        turtle.penup()
+        turtle.update()
+
+    def draw_a_projectile(self, x, y):
+        turtle.color("gray")
+        turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
+        turtle.setheading(0)
+        turtle.forward(self.len_square / 2)
+        turtle.left(90)
+        turtle.forward(self.len_square//4)
+        turtle.right(90)
+        turtle.pendown()
+
+        turtle.begin_fill()
+        turtle.circle(self.len_square // 4)
+        turtle.end_fill()
+
+        turtle.penup()
+        turtle.update()
+
+    def draw_a_bot(self, x, y):
+        turtle.color("red")
+        turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
+        turtle.setheading(0)
+        turtle.forward(self.len_square / 2)
+        turtle.pendown()
+
+        turtle.begin_fill()
+        turtle.circle(self.len_square / 2)
+        turtle.end_fill()
+
+        turtle.penup()
+        turtle.update()
+
+    def draw_a_player(self, x, y):
+        turtle.color("green")
+        turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
+        turtle.setheading(0)
+        turtle.forward(self.len_square / 2)
+        turtle.pendown()
+
+        turtle.begin_fill()
+        turtle.circle(self.len_square / 2)
+        turtle.end_fill()
+
+        turtle.penup()
+        turtle.update()
 
     def clear_screen(self):
-        raise RuntimeError("Can't find override for function"
-                           " clear_screen(...) from interface IGUIDrawer")
+        turtle.clear()
 
     def stop(self):
         raise RuntimeError("Can't find override for function"
                            " stop(...) from interface IGUIDrawer")
 
-actions = GUIActions(600, 10, 6)
-actions.initialize()
+actions = GUIActions(600, 1, 1)
 
+actions.initialize()
+actions.draw_a_projectile(1, 1)
+sleep(5)
