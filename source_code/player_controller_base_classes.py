@@ -1,20 +1,9 @@
 from source_code.common_classes import *
 
 
-class PlayerActionTypeEnum(Enum):
-    NOTHING = 0,
-    MOVE = 1,
-    SHOOT = 2
-
-
-class PlayerAction:
-    direction: DirectionEnum = DirectionEnum.NO_DIRECTION
-    action_type: PlayerActionTypeEnum = PlayerActionTypeEnum.NOTHING
-
-
 class IKeyboard:
 
-    def get_the_last_player_action(self) -> PlayerAction:
+    def get_the_last_player_action(self) -> BodyAction:
         raise RuntimeError("Can't find override for function"
                            " get_the_last_player_action(...) from interface IKeyboard")
 
@@ -29,9 +18,9 @@ class PlayerController:
         action = self.keyboard.get_the_last_player_action()
         action_type = action.action_type
         action_direction = action.direction
-        if action_type is PlayerActionTypeEnum.NOTHING:
+        if action_type is BodyActionTypeEnum.NOTHING:
             pass
-        elif action_type is PlayerActionTypeEnum.MOVE:
+        elif action_type is BodyActionTypeEnum.MOVE:
             if action_direction is DirectionEnum.NO_DIRECTION:
                 pass
             elif action_direction is DirectionEnum.UP:
@@ -42,7 +31,7 @@ class PlayerController:
                 player_data.coordinates.x += 1
             elif action_direction is DirectionEnum.DOWN:
                 player_data.coordinates.x += 1
-        elif action_type is PlayerActionTypeEnum.SHOOT:
+        elif action_type is BodyActionTypeEnum.SHOOT:
             if action_direction is DirectionEnum.NO_DIRECTION:
                 pass
             elif action_direction is DirectionEnum.UP:

@@ -22,6 +22,17 @@ class DirectionEnum(Enum):
     LEFT = 4
 
 
+class BodyActionTypeEnum(Enum):
+    NOTHING = 0,
+    MOVE = 1,
+    SHOOT = 2
+
+
+class BodyAction:
+    direction: DirectionEnum = DirectionEnum.NO_DIRECTION
+    action_type: BodyActionTypeEnum = BodyActionTypeEnum.NOTHING
+
+
 class ProjectileData(EntityData):
     direction: DirectionEnum = DirectionEnum.NO_DIRECTION
 
