@@ -42,3 +42,12 @@ class IDataStorage:
     def add_the_player_body_data(self, player_body_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " edit_the_player_body_data(...) from interface IDataStorage")
+
+    def push_collisions_data(self, collisions_data: list[list[EntityData]]):
+        raise RuntimeError("Can't find override for function"
+                           " push_collisions_data(...) from interface IDataStorage")
+
+    def pop_collisions_data(self, collisions_data: list[list[EntityData]]):
+        raise RuntimeError("Can't find override for function"
+                           " pop_collisions_data(...) from interface IDataStorage")
+
