@@ -1,6 +1,6 @@
-from common_classes import *
+from source_code.common_classes import *
 
-from data_storage_base_classes import IDataStorage
+from source_code.data_storage_base_classes import IDataStorage
 
 
 class IWorldLogicCore:

@@ -2,8 +2,8 @@
 from PyQt5 import QtWidgets
 #from PyQt5.QtWidgets import QApplication, QMainWindow
 """
-from gui_engine_base_classes import IGUIDrawer
-from common_classes import *
+from source_code.gui_engine_base_classes import IGUIDrawer
+from source_code.common_classes import *
 
 import turtle
 turtle.reset()
