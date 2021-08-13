@@ -4,7 +4,6 @@ from PyQt5 import QtWidgets
 """
 from gui_engine_base_classes import IGUIDrawer
 from common_classes import *
-from time import sleep
 
 import turtle
 turtle.reset()
@@ -72,7 +71,9 @@ class GUIActions(IGUIDrawer):
         turtle.penup()
         turtle.update()
 
-    def draw_an_obstacle(self, x, y):
+    def draw_an_obstacle(self, obstacle_data: BodyData):
+        x = BodyData.coordinates.x
+        y = BodyData.coordinates.y
         turtle.color("black")
 
         turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
@@ -88,7 +89,9 @@ class GUIActions(IGUIDrawer):
         turtle.penup()
         turtle.update()
 
-    def draw_a_projectile(self, x, y):
+    def draw_a_projectile(self, projectile_data: ProjectileData):
+        x = ProjectileData.coordinates.x
+        y = ProjectileData.coordinates.y
         turtle.color("gray")
         turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
         turtle.setheading(0)
@@ -105,7 +108,9 @@ class GUIActions(IGUIDrawer):
         turtle.penup()
         turtle.update()
 
-    def draw_a_bot(self, x, y):
+    def draw_a_bot(self, bot_data: BodyData):
+        x = BodyData.coordinates.x
+        y = BodyData.coordinates.y
         turtle.color("red")
         turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
         turtle.setheading(0)
@@ -119,7 +124,9 @@ class GUIActions(IGUIDrawer):
         turtle.penup()
         turtle.update()
 
-    def draw_a_player(self, x, y):
+    def draw_a_player(self, player_data: BodyData):
+        x = BodyData.coordinates.x
+        y = BodyData.coordinates.y
         turtle.color("green")
         turtle.goto((x - 1) * self.len_square - self.x / 2, (y - 1) * self.len_square - self.y / 2)
         turtle.setheading(0)
@@ -139,4 +146,3 @@ class GUIActions(IGUIDrawer):
     def stop(self):
         raise RuntimeError("Can't find override for function"
                            " stop(...) from interface IGUIDrawer")
-
