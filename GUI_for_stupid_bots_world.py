@@ -140,8 +140,3 @@ class GUIActions(IGUIDrawer):
         raise RuntimeError("Can't find override for function"
                            " stop(...) from interface IGUIDrawer")
 
-actions = GUIActions(600, 1, 1)
-
-actions.initialize()
-actions.draw_a_projectile(1, 1)
-sleep(5)
