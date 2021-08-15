@@ -30,25 +30,32 @@ class IBotAiCore:
 
 
 class BotAiEngine:
-    data_storage: IDataStorage
-    ai_core: IBotAiCore
+    _data_storage: IDataStorage = None
+    _ai_core: IBotAiCore = None
 
     projectiles_to_spawn: list[ProjectileData]
 
     def __init__(self, data_storage: IDataStorage, ai_core: IBotAiCore):
-        self.data_storage = data_storage
-        self.ai_core = ai_core
+        self._data_storage = data_storage
+        self._ai_core = ai_core
+        # Checks for None
+        if self._data_storage is None:
+            raise RuntimeError("Get None instead of an IDataStorage exemplar "
+                               "in the _data_storage field due BotAiEngine constructing")
+        if self._ai_core is None:
+            raise RuntimeError("Get None instead of an IBotAiCore exemplar "
+                               "in the _ai_core field due BotAiEngine constructing")
 
     def load_data_to_consider_by_ai(self):
-        bots_data_to_consider = self.data_storage.get_data_of_all_bodies_of_bots()
-        self.ai_core.consider_bots_data(bots_data_to_consider)
-        obstacles_data_to_consider = self.data_storage.get_data_of_all_bodies_of_obstacles()
-        self.ai_core.consider_obstacles_data(obstacles_data_to_consider)
-        player_data_to_consider = self.data_storage.get_data_of_the_body_of_the_player()
-        self.ai_core.consider_player_data(player_data_to_consider)
+        bots_data_to_consider = self._data_storage.get_data_of_all_bodies_of_bots()
+        self._ai_core.consider_bots_data(bots_data_to_consider)
+        obstacles_data_to_consider = self._data_storage.get_data_of_all_bodies_of_obstacles()
+        self._ai_core.consider_obstacles_data(obstacles_data_to_consider)
+        player_data_to_consider = self._data_storage.get_data_of_the_body_of_the_player()
+        self._ai_core.consider_player_data(player_data_to_consider)
 
     def calculate_and_perform_bots_actions(self):
-        actions = self.ai_core.get_actions_of_considered_bots()
+        actions = self._ai_core.get_actions_of_considered_bots()
         for next_action in actions:
             if next_action.action_type is BodyActionTypeEnum.NOTHING:
                 pass

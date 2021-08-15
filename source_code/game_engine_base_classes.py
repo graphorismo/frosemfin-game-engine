@@ -39,6 +39,7 @@ class GameEngineBuilder:
     bot_ai_core: IBotAiCore
 
     def build_a_game_engine(self) -> GameEngine:
+        self._do_checks_for_Nones_in_fields()
         game_engine = GameEngine()
         game_engine.data_storage = self.data_storage
         game_engine.gui_engine = GUIEngine(self.data_storage, self.gui_core)
@@ -46,3 +47,21 @@ class GameEngineBuilder:
         game_engine.world_logic_engine = WordLogicEngine(self.data_storage, self.world_logic_core)
         game_engine.bot_ai_engine = BotAiEngine(self.data_storage, self.bot_ai_core)
         return game_engine
+
+    def _do_checks_for_Nones_in_fields(self):
+        # Checks for None
+        if self.data_storage is None:
+            raise RuntimeError("Get None instead of an IDataStorage exemplar "
+                               "in the data_storage field due GameEngineBuilder::build_a_game_engine()")
+        if self.gui_core is None:
+            raise RuntimeError("Get None instead of an IGUIDrawer exemplar "
+                               "in the gui_core field due GameEngineBuilder::build_a_game_engine()")
+        if self.keyboard_reader is None:
+            raise RuntimeError("Get None instead of an IKeyboardReader exemplar "
+                               "in the keyboard_reader field due GameEngineBuilder::build_a_game_engine()")
+        if self.world_logic_core is None:
+            raise RuntimeError("Get None instead of an IWorldLogicCore exemplar "
+                               "in the world_logic_core field due GameEngineBuilder::build_a_game_engine()")
+        if self.bot_ai_core is None:
+            raise RuntimeError("Get None instead of an IBotAiCore exemplar "
+                               "in the bot_ai_core field due GameEngineBuilder::build_a_game_engine()")

@@ -11,16 +11,23 @@ class IKeyboardReader:
 
 
 class PlayerController:
-    keyboard_reader: IKeyboardReader
-    data_storage: IDataStorage
+    _keyboard_reader: IKeyboardReader
+    _data_storage: IDataStorage
 
     def __init__(self, data_storage: IDataStorage, keyboard: IKeyboardReader):
-        self.keyboard_reader = keyboard
-        self.data_storage = data_storage
+        self._keyboard_reader = keyboard
+        self._data_storage = data_storage
+        # Checks for None
+        if self._data_storage is None:
+            raise RuntimeError("Get None instead of an IDataStorage exemplar "
+                               "in the _data_storage field due PlayerController constructing")
+        if self._keyboard_reader is None:
+            raise RuntimeError("Get None instead of an IKeyboardReader exemplar "
+                               "in the _keyboard_reader field due PlayerController constructing")
 
     def react_to_the_last_players_action(self):
-        player_data = self.data_storage.get_data_of_the_body_of_the_player()
-        action = self.keyboard_reader.get_the_last_player_action()
+        player_data = self._data_storage.get_data_of_the_body_of_the_player()
+        action = self._keyboard_reader.get_the_last_player_action()
         action_type = action.action_type
         action_direction = action.direction
         if action_type is BodyActionTypeEnum.NOTHING:

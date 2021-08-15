@@ -21,18 +21,25 @@ class IWorldLogicCore:
 
 
 class WordLogicEngine:
-    data_storage: IDataStorage
-    logic_core: IWorldLogicCore
+    _data_storage: IDataStorage = None
+    _logic_core: IWorldLogicCore = None
 
     def __init__(self, data_storage: IDataStorage, logic_core: IWorldLogicCore):
-        self.data_storage = data_storage
-        self.logic_core = logic_core
+        self._data_storage = data_storage
+        self._logic_core = logic_core
+        # Checks for None
+        if self._data_storage is None:
+            raise RuntimeError("Get None instead of an IDataStorage exemplar "
+                               "in the _data_storage field due WordLogicEngine constructing")
+        if self._logic_core is None:
+            raise RuntimeError("Get None instead of an IWorldLogicCore exemplar "
+                               "in the _logic_core field due WordLogicEngine constructing")
 
     def process_world_logic_effects(self):
-        entities = self.data_storage.get_data_of_all_entities()
-        self.logic_core.bounce_back_entities_collided_with_world_border(entities)
-        collisions = self.logic_core.get_all_collisions_between_entities(entities)
-        self.data_storage.push_collisions_data(collisions)
+        entities = self._data_storage.get_data_of_all_entities()
+        self._logic_core.bounce_back_entities_collided_with_world_border(entities)
+        collisions = self._logic_core.get_all_collisions_between_entities(entities)
+        self._data_storage.push_collisions_data(collisions)
 
 
 

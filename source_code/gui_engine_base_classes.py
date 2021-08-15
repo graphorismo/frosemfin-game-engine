@@ -38,41 +38,48 @@ class IGUIDrawer:
 
 class GUIEngine:
 
-    data_storage: IDataStorage
-    gui_drawer: IGUIDrawer
+    _data_storage: IDataStorage
+    _gui_drawer: IGUIDrawer
 
     def __init__(self, data_storage: IDataStorage, gui_drawer: IGUIDrawer):
-        self.data_storage = data_storage
-        self.gui_drawer = gui_drawer
+        self._data_storage = data_storage
+        self._gui_drawer = gui_drawer
+        # Checks for None
+        if self._data_storage is None:
+            raise RuntimeError("Get None instead of an IDataStorage exemplar "
+                               "in the _data_storage field due PlayerController constructing")
+        if self._gui_drawer is None:
+            raise RuntimeError("Get None instead of an IGUIDrawer exemplar "
+                               "in the _gui_drawer field due PlayerController constructing")
 
     def init_gui(self):
-        self.gui_drawer.initialize()
+        self._gui_drawer.initialize()
 
     def update_frame(self):
-        self.gui_drawer.clear_screen()
+        self._gui_drawer.clear_screen()
         self._draw_all_obstacles()
         self._draw_all_projectiles()
         self._draw_all_bots()
         self._draw_player()
 
     def _draw_all_obstacles(self):
-        obstacles = self.data_storage.get_data_of_all_bodies_of_obstacles()
+        obstacles = self._data_storage.get_data_of_all_bodies_of_obstacles()
         for next_obstacle in obstacles:
-            self.gui_drawer.draw_an_obstacle(next_obstacle)
+            self._gui_drawer.draw_an_obstacle(next_obstacle)
 
     def _draw_all_projectiles(self):
-        projectiles = self.data_storage.get_data_of_all_projectiles()
+        projectiles = self._data_storage.get_data_of_all_projectiles()
         for next_projectile in projectiles:
-            self.gui_drawer.draw_a_projectile(next_projectile)
+            self._gui_drawer.draw_a_projectile(next_projectile)
 
     def _draw_all_bots(self):
-        bots = self.data_storage.get_data_of_all_bodies_of_bots()
+        bots = self._data_storage.get_data_of_all_bodies_of_bots()
         for next_bot in bots:
-            self.gui_drawer.draw_a_bot(next_bot)
+            self._gui_drawer.draw_a_bot(next_bot)
 
     def _draw_player(self):
-        player = self.data_storage.get_data_of_the_body_of_the_player()
-        self.gui_drawer.draw_a_player(player)
+        player = self._data_storage.get_data_of_the_body_of_the_player()
+        self._gui_drawer.draw_a_player(player)
 
     def kill_gui(self):
-        self.gui_drawer.stop()
+        self._gui_drawer.stop()
