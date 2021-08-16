@@ -92,3 +92,5 @@ class BotAiEngine:
         elif shoot_action.direction is DirectionEnum.LEFT:
             new_projectile.coordinates.y -= 1
 
+        self._data_storage.add_data_of_projectiles(new_projectile)
+

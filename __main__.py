@@ -22,6 +22,7 @@ game_engine = game_engine_builder.build_a_game_engine()
 print("Initialise the game engine")
 game_engine.initialize()
 print("Running the game engine")
+# TODO add a stop flag to the GameEngine to break main while loop with it
 while True:
     game_engine.process_a_single_full_game_tick()
 print("Shutdown the game engine")
