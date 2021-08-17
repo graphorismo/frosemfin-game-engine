@@ -31,6 +31,10 @@ class IGUIDrawer:
         raise RuntimeError("Can't find override for function"
                            " set_the_draw_resolution(...) from interface IGUIDrawer")
 
+    def set_the_draw_area_size_in_draw_units(self, high: int, width: int):
+        raise RuntimeError("Can't find override for function"
+                           " set_the_draw_area_size_in_draw_units(...) from interface IGUIDrawer")
+
     def update_screen(self):
         raise RuntimeError("Can't find override for function"
                            " update_screen(...) from interface IGUIDrawer")
