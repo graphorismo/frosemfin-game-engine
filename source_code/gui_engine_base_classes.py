@@ -11,19 +11,19 @@ class IGUIDrawer:
         raise RuntimeError("Can't find override for function"
                            " initialize(...) from interface IGUIDrawer")
 
-    def draw_an_obstacle(self, obstacle_data: BodyData):
+    def add_an_obstacle_to_the_draw_buffer(self, obstacle_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " draw_an_obstacle(...) from interface IGUIDrawer")
 
-    def draw_a_projectile(self, projectile_data: ProjectileData):
+    def add_a_projectile_to_the_draw_buffer(self, projectile_data: ProjectileData):
         raise RuntimeError("Can't find override for function"
                            " draw_a_projectile(...) from interface IGUIDrawer")
 
-    def draw_a_bot(self, bot_data: BodyData):
+    def add_a_bot_to_the_draw_buffer(self, bot_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " draw_a_bot(...) from interface IGUIDrawer")
 
-    def draw_a_player(self, player_data: BodyData):
+    def add_a_player_to_the_draw_buffer(self, player_data: BodyData):
         raise RuntimeError("Can't find override for function"
                            " draw_a_player(...) from interface IGUIDrawer")
 
@@ -35,15 +35,15 @@ class IGUIDrawer:
         raise RuntimeError("Can't find override for function"
                            " set_the_draw_area_size_in_draw_units(...) from interface IGUIDrawer")
 
-    def update_screen(self):
+    def draw_the_draw_buffer_on_screen(self):
         raise RuntimeError("Can't find override for function"
                            " update_screen(...) from interface IGUIDrawer")
 
-    def clear_screen(self):
+    def clear_the_draw_buffer(self):
         raise RuntimeError("Can't find override for function"
                            " clear_screen(...) from interface IGUIDrawer")
 
-    def stop(self):
+    def finish_work_and_die(self):
         raise RuntimeError("Can't find override for function"
                            " stop(...) from interface IGUIDrawer")
 
@@ -68,7 +68,7 @@ class GUIEngine:
         self._gui_drawer.initialize()
 
     def update_frame(self):
-        self._gui_drawer.clear_screen()
+        self._gui_drawer.clear_the_draw_buffer()
         self._draw_all_obstacles()
         self._draw_all_projectiles()
         self._draw_all_bots()
@@ -77,21 +77,21 @@ class GUIEngine:
     def _draw_all_obstacles(self):
         obstacles = self._data_storage.get_data_of_all_bodies_of_obstacles()
         for next_obstacle in obstacles:
-            self._gui_drawer.draw_an_obstacle(next_obstacle)
+            self._gui_drawer.add_an_obstacle_to_the_draw_buffer(next_obstacle)
 
     def _draw_all_projectiles(self):
         projectiles = self._data_storage.get_data_of_all_projectiles()
         for next_projectile in projectiles:
-            self._gui_drawer.draw_a_projectile(next_projectile)
+            self._gui_drawer.add_a_projectile_to_the_draw_buffer(next_projectile)
 
     def _draw_all_bots(self):
         bots = self._data_storage.get_data_of_all_bodies_of_bots()
         for next_bot in bots:
-            self._gui_drawer.draw_a_bot(next_bot)
+            self._gui_drawer.add_a_bot_to_the_draw_buffer(next_bot)
 
     def _draw_player(self):
         player = self._data_storage.get_data_of_the_body_of_the_player()
-        self._gui_drawer.draw_a_player(player)
+        self._gui_drawer.add_a_player_to_the_draw_buffer(player)
 
     def kill_gui(self):
-        self._gui_drawer.stop()
+        self._gui_drawer.finish_work_and_die()
