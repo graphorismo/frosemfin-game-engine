@@ -27,6 +27,14 @@ class IGUIDrawer:
         raise RuntimeError("Can't find override for function"
                            " draw_a_player(...) from interface IGUIDrawer")
 
+    def set_the_draw_resolution(self, units_of_picture_per_one_unit_of_coordinates: int):
+        raise RuntimeError("Can't find override for function"
+                           " set_the_draw_resolution(...) from interface IGUIDrawer")
+
+    def update_screen(self):
+        raise RuntimeError("Can't find override for function"
+                           " update_screen(...) from interface IGUIDrawer")
+
     def clear_screen(self):
         raise RuntimeError("Can't find override for function"
                            " clear_screen(...) from interface IGUIDrawer")
