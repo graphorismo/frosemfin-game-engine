@@ -41,9 +41,9 @@ class SimpleBotAiCore(IBotAiCore):
         return actions_of_bots
 
     def _get_random_direction(self) -> DirectionEnum:
-        random_index = random.randint(range(len(DirectionEnum)))
+        random_index = random.randint(0, len(DirectionEnum) - 1)
         return DirectionEnum(random_index)
 
     def _get_random_action_type(self) -> BodyActionTypeEnum:
-        random_index = random.randint(range(len(BodyActionTypeEnum)))
+        random_index = random.randint(0, len(BodyActionTypeEnum) - 1)
         return BodyActionTypeEnum(random_index)
