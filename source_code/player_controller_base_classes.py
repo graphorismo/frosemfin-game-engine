@@ -27,30 +27,31 @@ class PlayerController:
 
     def react_to_the_last_players_action(self):
         player_data = self._data_storage.get_data_of_the_body_of_the_player()
-        action = self._keyboard_reader.get_the_last_player_action()
-        action_type = action.action_type
-        action_direction = action.direction
-        if action_type is BodyActionTypeEnum.NOTHING:
-            pass
-        elif action_type is BodyActionTypeEnum.MOVE:
-            if action_direction is DirectionEnum.NO_DIRECTION:
+        if player_data is not None:
+            action = self._keyboard_reader.get_the_last_player_action()
+            action_type = action.action_type
+            action_direction = action.direction
+            if action_type is BodyActionTypeEnum.NOTHING:
                 pass
-            elif action_direction is DirectionEnum.UP:
-                player_data.coordinates.y += 1
-            elif action_direction is DirectionEnum.DOWN:
-                player_data.coordinates.y += -1
-            elif action_direction is DirectionEnum.RIGHT:
-                player_data.coordinates.x += 1
-            elif action_direction is DirectionEnum.DOWN:
-                player_data.coordinates.x += 1
-        elif action_type is BodyActionTypeEnum.SHOOT:
-            if action_direction is DirectionEnum.NO_DIRECTION:
-                pass
-            elif action_direction is DirectionEnum.UP:
-                player_data.coordinates.y += 1
-            elif action_direction is DirectionEnum.DOWN:
-                player_data.coordinates.y += -1
-            elif action_direction is DirectionEnum.RIGHT:
-                player_data.coordinates.x += 1
-            elif action_direction is DirectionEnum.DOWN:
-                player_data.coordinates.x += 1
+            elif action_type is BodyActionTypeEnum.MOVE:
+                if action_direction is DirectionEnum.NO_DIRECTION:
+                    pass
+                elif action_direction is DirectionEnum.UP:
+                    player_data.coordinates.y += 1
+                elif action_direction is DirectionEnum.DOWN:
+                    player_data.coordinates.y += -1
+                elif action_direction is DirectionEnum.RIGHT:
+                    player_data.coordinates.x += 1
+                elif action_direction is DirectionEnum.DOWN:
+                    player_data.coordinates.x += 1
+            elif action_type is BodyActionTypeEnum.SHOOT:
+                if action_direction is DirectionEnum.NO_DIRECTION:
+                    pass
+                elif action_direction is DirectionEnum.UP:
+                    player_data.coordinates.y += 1
+                elif action_direction is DirectionEnum.DOWN:
+                    player_data.coordinates.y += -1
+                elif action_direction is DirectionEnum.RIGHT:
+                    player_data.coordinates.x += 1
+                elif action_direction is DirectionEnum.DOWN:
+                    player_data.coordinates.x += 1
