@@ -73,6 +73,7 @@ class GUIEngine:
         self._draw_all_projectiles()
         self._draw_all_bots()
         self._draw_player()
+        self._gui_drawer.draw_the_draw_buffer_on_screen()
 
     def _draw_all_obstacles(self):
         obstacles = self._data_storage.get_data_of_all_bodies_of_obstacles()
