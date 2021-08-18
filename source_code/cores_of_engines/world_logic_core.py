@@ -1,7 +1,8 @@
 from ..common_classes import *
+from ..world_logic_engine_base_classes import IWorldLogicCore
 
 
-class IWorldLogicCore:
+class SimpleWorldLogicCore(IWorldLogicCore):
     _high: int
     _width: int
 
@@ -27,7 +28,6 @@ class IWorldLogicCore:
                 if are_there_collision_for_entity_i:
                     collisions_list += new_collision_second_layer_list
         return collisions_list
-
 
     def bounce_back_entities_collided_with_world_border(self, entities_list: list[EntityData]):
         for current_entity in entities_list:
