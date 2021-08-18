@@ -1,5 +1,6 @@
 from source_code.game_engine_base_classes import *
 
+from source_code.cores_of_engines.data_storage_core import SimpleDataStorage
 from source_code.cores_of_engines.bot_ai_core import SimpleBotAiCore
 from source_code.cores_of_engines.gui_core_tkinter_console import TextModeGraphicTkinterGUIDrawer
 from source_code.cores_of_engines.world_logic_core import SimpleWorldLogicCore
@@ -10,7 +11,7 @@ def make_and_configure_a_game_engine_builder() -> GameEngineBuilder:
     new_game_engine_builder = GameEngineBuilder()
 
     # Attach interfaces realisations here
-    new_game_engine_builder.data_storage = None
+    new_game_engine_builder.data_storage = SimpleDataStorage()
     new_game_engine_builder.keyboard_reader = SimpleKeyboardReader()
     new_game_engine_builder.world_logic_core = SimpleWorldLogicCore()
     new_game_engine_builder.bot_ai_core = SimpleBotAiCore()
