@@ -30,7 +30,7 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_all_bodies_of_obstacles(...) from interface IDataStorage")
 
-    def add_data_of_bodies_of_obstacles(self, bodies_of_bots: list[BodyData]):
+    def add_data_of_bodies_of_obstacles(self, bodies_of_obstacles: list[BodyData]):
         raise RuntimeError("Can't find override for function"
                            " edit_or_create_data_of_bodies_of_obstacles(...) from interface IDataStorage")
 
