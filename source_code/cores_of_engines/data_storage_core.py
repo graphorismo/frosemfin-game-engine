@@ -12,7 +12,7 @@ class SimpleDataStorage(IDataStorage):
     _collision_events: list[list[EntityData]] = []
 
     def get_data_of_all_entities(self) -> list[EntityData]:
-        all_entities_data = list[EntityData]
+        all_entities_data: list[EntityData] = []
         all_entities_data += self._projectiles
         all_entities_data += self._bots
         all_entities_data += self._obstacles
