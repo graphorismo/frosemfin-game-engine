@@ -5,11 +5,11 @@ from copy import copy
 
 class SimpleDataStorage(IDataStorage):
 
-    _projectiles: list[ProjectileData]
-    _bots: list[BodyData]
-    _obstacles: list[BodyData]
-    _player: BodyData
-    _collision_events: list[list[EntityData]]
+    _projectiles: list[ProjectileData] = []
+    _bots: list[BodyData] = []
+    _obstacles: list[BodyData] = []
+    _player: BodyData = []
+    _collision_events: list[list[EntityData]] = []
 
     def get_data_of_all_entities(self) -> list[EntityData]:
         all_entities_data = list[EntityData]
