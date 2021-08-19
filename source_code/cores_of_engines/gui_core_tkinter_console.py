@@ -103,8 +103,8 @@ class TextModeGraphicTkinterGUIDrawer(IGUIDrawer):
     _resolution_of_draw: int = 1
 
     def initialize(self):
-        window = SimpleWindow()
-        window.master.title('Sample application')
+        self._window = SimpleWindow()
+        self._window.master.title('Sample application')
 
     def add_an_obstacle_to_the_draw_buffer(self, obstacle_data: BodyData):
         self._raise_an_exception_if_an_entity_have_negative_coordinates(obstacle_data)

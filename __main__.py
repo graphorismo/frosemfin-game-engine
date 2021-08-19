@@ -1,3 +1,5 @@
+import time
+
 from source_code.game_engine_base_classes import *
 
 from source_code.cores_of_engines.data_storage_core import SimpleDataStorage
@@ -31,6 +33,7 @@ print("Running the game engine")
 # TODO add a stop flag to the GameEngine to break main while loop with it
 while True:
     game_engine.process_a_single_full_game_tick()
+    time.sleep(1.0)
 print("Shutdown the game engine")
 game_engine.shutdown()
 print("Game engine stopped. You can exit safely.")
