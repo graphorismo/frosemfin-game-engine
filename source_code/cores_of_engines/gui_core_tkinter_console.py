@@ -99,7 +99,7 @@ class SimpleWindow(tk.Frame):
         self.text_graphics_field.grid()
 
     def show_draw_buffer(self, draw_buffer: DrawBuffer):
-        self.text_graphics_field.delete('0.0')
+        self.text_graphics_field.delete('0.0', tk.END)
         self.text_graphics_field.insert('0.0', str(draw_buffer))
 
 
