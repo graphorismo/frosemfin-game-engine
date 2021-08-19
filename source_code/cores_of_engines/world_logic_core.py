@@ -3,8 +3,8 @@ from ..world_logic_engine_base_classes import IWorldLogicCore
 
 
 class SimpleWorldLogicCore(IWorldLogicCore):
-    _high: int
-    _width: int
+    _high: int = 0
+    _width: int = 0
 
     def set_world_border_size(self, high: int, width: int):
         if (high is None or high <= 0) or (width is None or width <= 0):

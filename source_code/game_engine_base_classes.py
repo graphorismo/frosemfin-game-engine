@@ -17,6 +17,7 @@ class GameEngine:
     def initialize(self):
         self.gui_engine.init_gui()
         self.data_storage.load_all_data_from_a_file("data-storage-save.bin")
+        self.world_logic_engine.init_the_game_world()
         if self.data_storage.get_data_of_the_body_of_the_player() is None:
             self._add_to_data_storage_a_bunch_of_entities()
 

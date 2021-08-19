@@ -11,6 +11,7 @@ class SimpleDataStorage(IDataStorage):
     _obstacles: list[BodyData] = []
     _player: BodyData = None
     _collision_events: list[list[EntityData]] = []
+    _world_data: WorldData = WorldData()
 
     def save_all_data_to_a_file(self, file_path: str):
         with open(file_path, "wb") as file_to_save_in:
@@ -18,6 +19,7 @@ class SimpleDataStorage(IDataStorage):
             file_to_save_in.write(bytearray(pickle.dumps(self._bots)))
             file_to_save_in.write(bytearray(pickle.dumps(self._obstacles)))
             file_to_save_in.write(bytearray(pickle.dumps(self._player)))
+            file_to_save_in.write(bytearray(pickle.dumps(self._world_data)))
 
     def load_all_data_from_a_file(self, file_path: str):
         try:
@@ -26,6 +28,7 @@ class SimpleDataStorage(IDataStorage):
                 self._bots = pickle.load(file_to_load_from.readline())
                 self._obstacles = pickle.load(file_to_load_from.readline())
                 self._player = pickle.load(file_to_load_from.readline())
+                self._world_data = pickle.load(file_to_load_from.readline())
         except FileNotFoundError:
             pass
 
@@ -34,7 +37,7 @@ class SimpleDataStorage(IDataStorage):
         all_entities_data += self._projectiles
         all_entities_data += self._bots
         all_entities_data += self._obstacles
-        all_entities_data += self._player
+        all_entities_data += [self._player]
         return copy(all_entities_data)
 
     def get_data_of_all_projectiles(self) -> list[ProjectileData]:
@@ -68,3 +71,7 @@ class SimpleDataStorage(IDataStorage):
         poped_events = self._collision_events
         self._collision_events = []
         return poped_events
+
+    def get_world_data(self) -> WorldData:
+        return super().get_world_data()
+

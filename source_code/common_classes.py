@@ -1,6 +1,11 @@
 from enum import Enum
 
 
+class WorldData:
+    high: int = 0
+    width: int = 0
+
+
 class Vector2i:
     x: int = 0
     y: int = 0
@@ -11,7 +16,7 @@ class UniqueEntity:
 
 
 class EntityData(UniqueEntity):
-    coordinates: Vector2i
+    coordinates: Vector2i = Vector2i()
 
 
 class DirectionEnum(Enum):

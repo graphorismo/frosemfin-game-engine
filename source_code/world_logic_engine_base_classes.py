@@ -35,6 +35,10 @@ class WordLogicEngine:
             raise RuntimeError("Get None instead of an IWorldLogicCore exemplar "
                                "in the _logic_core field due WordLogicEngine constructing")
 
+    def init_the_game_world(self):
+        world_data = self._data_storage.get_world_data()
+        self._logic_core.set_world_border_size(world_data.high, world_data.width)
+
     def process_world_logic_effects(self):
         entities = self._data_storage.get_data_of_all_entities()
         self._logic_core.bounce_back_entities_collided_with_world_border(entities)

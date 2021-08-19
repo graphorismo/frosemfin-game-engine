@@ -58,3 +58,7 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " pop_collisions_data(...) from interface IDataStorage")
 
+    def get_world_data(self) -> WorldData:
+        raise RuntimeError("Can't find override for function"
+                           " get_world_data_copy(...) from interface IDataStorage")
+
