@@ -23,6 +23,7 @@ class IWorldLogicCore:
 class WordLogicEngine:
     _data_storage: IDataStorage = None
     _logic_core: IWorldLogicCore = None
+    _world_data: WorldData = None
 
     def __init__(self, data_storage: IDataStorage, logic_core: IWorldLogicCore):
         self._data_storage = data_storage
@@ -36,8 +37,8 @@ class WordLogicEngine:
                                "in the _logic_core field due WordLogicEngine constructing")
 
     def init_the_game_world(self):
-        world_data = self._data_storage.get_world_data()
-        self._logic_core.set_world_border_size(world_data.high, world_data.width)
+        self._world_data = self._data_storage.get_world_data()
+        self._logic_core.set_world_border_size(self._world_data.high, self._world_data.width)
 
     def process_world_logic_effects(self):
         entities = self._data_storage.get_data_of_all_entities()

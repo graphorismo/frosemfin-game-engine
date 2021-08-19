@@ -2,11 +2,12 @@ from enum import Enum
 
 
 class WorldData:
-    # 30 because im too lazy to implement
+    # Fields have default values
+    # because im too lazy to implement
     # the test suit for world init or
     # world edit funcs for now
-    high: int = 30
-    width: int = 30
+    high: int = 15
+    width: int = 15
 
 
 class Vector2i:

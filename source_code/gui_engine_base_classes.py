@@ -52,6 +52,7 @@ class GUIEngine:
 
     _data_storage: IDataStorage
     _gui_drawer: IGUIDrawer
+    _world_data: WorldData
 
     def __init__(self, data_storage: IDataStorage, gui_drawer: IGUIDrawer):
         self._data_storage = data_storage
@@ -65,8 +66,9 @@ class GUIEngine:
                                "in the _gui_drawer field due PlayerController constructing")
 
     def init_gui(self):
+        self._world_data = self._data_storage.get_world_data()
         self._gui_drawer.set_the_draw_resolution(1)
-        self._gui_drawer.set_the_draw_area_size_in_draw_units(30, 30)
+        self._gui_drawer.set_the_draw_area_size_in_draw_units(self._world_data.high, self._world_data.width)
         self._gui_drawer.initialize()
 
     def update_frame(self):

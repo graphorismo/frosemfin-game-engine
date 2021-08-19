@@ -38,8 +38,8 @@ class GameEngine:
     # Test function to spawn something, temporary solution
     def _add_to_data_storage_a_bunch_of_entities(self):
         bot1 = BodyData()
-        bot1.coordinates.x = 3
-        bot1.coordinates.y = 3
+        bot1.coordinates.x = 2
+        bot1.coordinates.y = 2
         self.data_storage.add_data_of_bodies_of_bots([bot1])
 
         obstacle1 = BodyData()
@@ -48,8 +48,8 @@ class GameEngine:
         self.data_storage.add_data_of_bodies_of_obstacles([obstacle1])
 
         player_body = BodyData()
-        player_body.coordinates.x = 7
-        player_body.coordinates.y = 7
+        player_body.coordinates.x = 8
+        player_body.coordinates.y = 8
         self.data_storage.add_the_player_body_data(player_body)
 
 
