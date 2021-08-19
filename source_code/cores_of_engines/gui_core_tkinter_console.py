@@ -25,7 +25,7 @@ class DrawBuffer:
 
     def draw_a_symbol_on_coordinates(self, symbol: str, coordinates: Vector2i):
         line_old_data = self.lines[coordinates.y]
-        self.lines[coordinates.y] = line_old_data[0 : coordinates.x - 1] + \
+        self.lines[coordinates.y] = line_old_data[0 : coordinates.x] + \
                                  symbol[0] +\
                                  line_old_data[coordinates.x+1 : ]
 
@@ -61,7 +61,7 @@ class DrawBuffer:
         area_width = right_edge_column_index - left_edge_column_index + 1
         for line_index in range(bottom_line_index, top_line_index+1):
             line_old_data = self.lines[line_index]
-            self.lines[line_index] = line_old_data[0:left_edge_column_index-1] + \
+            self.lines[line_index] = line_old_data[0:left_edge_column_index] + \
                                      area_filler_symbol[0] * area_width + \
                                      line_old_data[right_edge_column_index+1:]
 
