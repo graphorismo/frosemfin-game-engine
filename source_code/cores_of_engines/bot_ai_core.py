@@ -37,7 +37,7 @@ class SimpleBotAiCore(IBotAiCore):
             bot_action.corresponded_bot = current_bot
             bot_action.direction = self._get_random_direction()
             bot_action.action_type = self._get_random_action_type()
-            actions_of_bots += bot_action
+            actions_of_bots.append(bot_action)
         return actions_of_bots
 
     def _get_random_direction(self) -> DirectionEnum:

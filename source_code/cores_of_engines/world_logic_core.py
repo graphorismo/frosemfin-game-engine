@@ -23,7 +23,7 @@ class SimpleWorldLogicCore(IWorldLogicCore):
             for j in indexes_from_i_to_the_last_index:
                 entity_j = entities_list[j]
                 if entity_i.coordinates == entity_j.coordinates:
-                    new_collision_second_layer_list += entity_j
+                    new_collision_second_layer_list.append(entity_j)
                 are_there_collision_for_entity_i = len(new_collision_second_layer_list) > 1
                 if are_there_collision_for_entity_i:
                     collisions_list += new_collision_second_layer_list

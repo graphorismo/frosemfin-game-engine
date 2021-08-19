@@ -31,8 +31,8 @@ class DirectionEnum(Enum):
 
 
 class BodyActionTypeEnum(Enum):
-    NOTHING = 0,
-    MOVE = 1,
+    NOTHING = 0
+    MOVE = 1
     SHOOT = 2
 
 
