@@ -4,18 +4,24 @@ from ..common_classes import *
 
 
 class DrawBuffer:
-    lines: list[str]
-    high: int = 10
-    width: int = 10
+    lines: list[str] = [str() for _ in range(10)]
+    _high: int = 10
+    _width: int = 10
 
     basic_filler_symbol = '.'
 
     def __str__(self):
-        return '\n'.join([self.lines[i] for i in range(self.high)])
+        return '\n'.join([self.lines[i] for i in range(self._high)])
+
+    def update_size_and_clear(self, high: int, width: int):
+        self._high = high
+        self._width = width
+        self.lines = [str() for _ in range(high)]
+        self.fill_all_lines_with_basic_filler_symbol()
 
     def fill_all_lines_with_basic_filler_symbol(self):
-        for h in range(self.high):
-            self.lines[h] = self.basic_filler_symbol[0]*self.width
+        for h in range(self._high):
+            self.lines[h] = self.basic_filler_symbol[0]*self._width
 
     def fill_the_area_with_symbol(self, area_defining_vector_1: Vector2i, area_defining_vector_2: Vector2i,
                                   area_filler_symbol: str) -> str:
@@ -51,8 +57,8 @@ class DrawBuffer:
 
     def _clip_number_to_fit_the_width_and_return_copy(self, number_to_clip: int) -> int:
         clipped_number: int
-        if number_to_clip >= self.width:
-            clipped_number = self.width - 1
+        if number_to_clip >= self._width:
+            clipped_number = self._width - 1
         elif number_to_clip < 0:
             clipped_number = 0
         else:
@@ -61,8 +67,8 @@ class DrawBuffer:
 
     def _clip_number_to_fit_the_high_and_return_copy(self, number_to_clip: int) -> int:
         clipped_number: int
-        if number_to_clip >= self.high:
-            clipped_number = self.high - 1
+        if number_to_clip >= self._high:
+            clipped_number = self._high - 1
         elif number_to_clip < 0:
             clipped_number = 0
         else:
@@ -136,8 +142,7 @@ class TextModeGraphicTkinterGUIDrawer(IGUIDrawer):
         if high <= 0 or width <= 0:
             raise RuntimeError(f"Receive a draw area size number less or equal to zero on the "
                                f"input of TextModeGraphicTkinterGUIDrawer::set_the_draw_area_size_in_draw_units(...)")
-        self._draw_buffer.high_in_draw_units = high
-        self._draw_buffer.width_in_draw_units = width
+        self._draw_buffer.update_size_and_clear(high, width)
 
     def draw_the_draw_buffer_on_screen(self):
         self._window.show_draw_buffer(self._draw_buffer)
