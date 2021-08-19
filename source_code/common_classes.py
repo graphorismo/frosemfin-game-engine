@@ -2,8 +2,11 @@ from enum import Enum
 
 
 class WorldData:
-    high: int = 0
-    width: int = 0
+    # 30 because im too lazy to implement
+    # the test suit for world init or
+    # world edit funcs for now
+    high: int = 30
+    width: int = 30
 
 
 class Vector2i:

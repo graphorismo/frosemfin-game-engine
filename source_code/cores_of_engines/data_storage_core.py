@@ -73,5 +73,5 @@ class SimpleDataStorage(IDataStorage):
         return poped_events
 
     def get_world_data(self) -> WorldData:
-        return super().get_world_data()
+        return self._world_data
 
