@@ -65,6 +65,8 @@ class GUIEngine:
                                "in the _gui_drawer field due PlayerController constructing")
 
     def init_gui(self):
+        self._gui_drawer.set_the_draw_resolution(1)
+        self._gui_drawer.set_the_draw_area_size_in_draw_units(30, 30)
         self._gui_drawer.initialize()
 
     def update_frame(self):

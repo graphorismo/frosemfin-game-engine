@@ -6,6 +6,14 @@ class IDataStorage:
 
     # Functions to override in inherited classes:
 
+    def save_all_data_to_a_file(self, file_path: str):
+        raise RuntimeError("Can't find override for function"
+                           " save_all_data_to_a_file(...) from interface IDataStorage")
+
+    def load_all_data_from_a_file(self, file_path: str):
+        raise RuntimeError("Can't find override for function"
+                           " load_all_data_from_a_file(...) from interface IDataStorage")
+
     def get_data_of_all_entities(self) -> list[EntityData]:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_all_entities(...) from interface IDataStorage")
