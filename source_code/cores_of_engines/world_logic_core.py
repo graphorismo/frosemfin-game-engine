@@ -26,7 +26,7 @@ class SimpleWorldLogicCore(IWorldLogicCore):
                     new_collision_second_layer_list.append(entity_j)
                 are_there_collision_for_entity_i = len(new_collision_second_layer_list) > 1
                 if are_there_collision_for_entity_i:
-                    collisions_list += new_collision_second_layer_list
+                    collisions_list.extend(new_collision_second_layer_list)
         return collisions_list
 
     def bounce_back_entities_collided_with_world_border(self, entities_list: list[EntityData]):

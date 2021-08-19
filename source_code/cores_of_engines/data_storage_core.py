@@ -34,29 +34,29 @@ class SimpleDataStorage(IDataStorage):
 
     def get_data_of_all_entities(self) -> list[EntityData]:
         all_entities_data: list[EntityData] = []
-        all_entities_data += self._projectiles
-        all_entities_data += self._bots
-        all_entities_data += self._obstacles
-        all_entities_data += [self._player]
+        all_entities_data.extend(self._projectiles)
+        all_entities_data.extend(self._bots)
+        all_entities_data.extend(self._obstacles)
+        all_entities_data.append(self._player)
         return copy(all_entities_data)
 
     def get_data_of_all_projectiles(self) -> list[ProjectileData]:
         return copy(self._projectiles)
 
     def add_data_of_projectiles(self, projectiles: list[ProjectileData]):
-        self._projectiles += projectiles
+        self._projectiles.extend(projectiles)
 
     def get_data_of_all_bodies_of_bots(self) -> list[BodyData]:
         return copy(self._bots)
 
     def add_data_of_bodies_of_bots(self, bodies_of_bots: list[BodyData]):
-        self._bots += bodies_of_bots
+        self._bots.extend(bodies_of_bots)
 
     def get_data_of_all_bodies_of_obstacles(self) -> list[BodyData]:
         return copy(self._obstacles)
 
     def add_data_of_bodies_of_obstacles(self, bodies_of_obstacles: list[BodyData]):
-        self._obstacles += bodies_of_obstacles
+        self._obstacles.extend(bodies_of_obstacles)
 
     def get_data_of_the_body_of_the_player(self) -> BodyData:
         return copy(self._player)
@@ -65,7 +65,7 @@ class SimpleDataStorage(IDataStorage):
         self._player = player_body_data
 
     def push_collisions_data(self, collisions_data: list[list[EntityData]]):
-        self._collision_events += collisions_data
+        self._collision_events.extend(collisions_data)
 
     def pop_collisions_data(self, collisions_data: list[list[EntityData]]):
         poped_events = self._collision_events
