@@ -22,13 +22,10 @@ class GameEngine:
             self._add_to_data_storage_a_bunch_of_entities()
 
     def process_a_single_full_game_tick(self):
-        self.world_logic_engine.process_world_logic_effects()
-
         self.player_controller.react_to_the_last_players_action()
-
         self.bot_ai_engine.load_data_to_consider_by_ai()
         self.bot_ai_engine.calculate_and_perform_bots_actions()
-
+        self.world_logic_engine.process_world_logic_effects()
         self.gui_engine.update_frame()
 
     def shutdown(self):

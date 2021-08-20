@@ -50,11 +50,11 @@ class WordLogicEngine:
 
     def process_world_logic_effects(self):
         entities = self._data_storage.get_data_of_all_entities()
-        self._logic_core.bounce_back_entities_collided_with_world_border(entities)
         collisions = self._logic_core.get_all_collisions_between_entities(entities)
         self._data_storage.push_collisions_data(collisions)
         self._logic_core.process_projectiles_logic(self._data_storage.get_data_of_all_projectiles())
         self._data_storage.remove_data_of_projectiles(self._logic_core.pop_a_list_of_projectiles_to_remove())
+        self._logic_core.bounce_back_entities_collided_with_world_border(entities)
 
 
 
