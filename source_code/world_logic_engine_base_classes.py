@@ -19,6 +19,14 @@ class IWorldLogicCore:
         raise RuntimeError("Can't find override for function"
                            " bounce_back_entities_collided_with_world_border(...) from interface IWorldLogicEngine")
 
+    def process_projectiles_logic(self, all_projectiles: list[ProjectileData]):
+        raise RuntimeError("Can't find override for function"
+                           " process_projectiles_logic(...) from interface IWorldLogicEngine")
+
+    def pop_a_list_of_projectiles_to_remove(self) -> list[ProjectileData]:
+        raise RuntimeError("Can't find override for function"
+                           " get_projectiles_to_remove(...) from interface IWorldLogicEngine")
+
 
 class WordLogicEngine:
     _data_storage: IDataStorage = None
@@ -45,6 +53,10 @@ class WordLogicEngine:
         self._logic_core.bounce_back_entities_collided_with_world_border(entities)
         collisions = self._logic_core.get_all_collisions_between_entities(entities)
         self._data_storage.push_collisions_data(collisions)
+        self._logic_core.process_projectiles_logic(self._data_storage.get_data_of_all_projectiles())
+        self._data_storage.remove_data_of_projectiles(self._logic_core.pop_a_list_of_projectiles_to_remove())
+
+
 
 
 

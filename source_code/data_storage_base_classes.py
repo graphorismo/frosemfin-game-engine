@@ -26,6 +26,10 @@ class IDataStorage:
         raise RuntimeError("Can't find override for function"
                            " edit_or_create_data_of_projectiles(...) from interface IDataStorage")
 
+    def remove_data_of_projectiles(self, projectiles: list[ProjectileData]):
+        raise RuntimeError("Can't find override for function"
+                           " remove_data_of_projectiles(...) from interface IDataStorage")
+
     def get_data_of_all_bodies_of_bots(self) -> list[BodyData]:
         raise RuntimeError("Can't find override for function"
                            " get_data_of_bodies_of_bots(...) from interface IDataStorage")

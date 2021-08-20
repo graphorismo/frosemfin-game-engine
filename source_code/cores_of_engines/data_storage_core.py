@@ -46,6 +46,11 @@ class SimpleDataStorage(IDataStorage):
     def add_data_of_projectiles(self, projectiles: list[ProjectileData]):
         self._projectiles.extend(projectiles)
 
+    def remove_data_of_projectiles(self, projectiles: list[ProjectileData]):
+        if len(projectiles) > 0:
+            for current_projectile in projectiles:
+                self._projectiles.remove(current_projectile)
+
     def get_data_of_all_bodies_of_bots(self) -> list[BodyData]:
         return copy(self._bots)
 
