@@ -18,12 +18,31 @@ class Vector2i:
         self.x = 0
         self.y = 0
 
+class UniqueIDPool:
+    pool_of_free_ids: set[int]
+    pool_of_locked_ids: set[int]
+    size: int
+
+    def __init__(self, size: int):
+        self.pool_of_free_ids = set()
+        self.pool_of_locked_ids = set()
+        for i in range(1, size+1):
+            self.pool_of_free_ids.add(i)
+
+    def pop_unique_id(self) -> int:
+        poped_id = self.pool_of_free_ids.pop()
+        self.pool_of_locked_ids.add(poped_id)
+        return poped_id
+
 
 class UniqueEntity:
     unique_id: int
 
-    def __init__(self):
-        self.unique_id = -1
+    def __init__(self, unique_id: int):
+        self.unique_id = unique_id
+
+    def __hash__(self):
+        return hash(self.unique_id)
 
 
 class EntityData(UniqueEntity):
