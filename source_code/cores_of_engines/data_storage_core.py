@@ -13,6 +13,9 @@ class SimpleDataStorage(IDataStorage):
     _collision_events: list[list[EntityData]] = []
     _world_data: WorldData = WorldData()
 
+    def __init__(self):
+        super().__init__(size=100)
+
     def save_all_data_to_a_file(self, file_path: str):
         with open(file_path, "wb") as file_to_save_in:
             file_to_save_in.write(bytearray(pickle.dumps(self._projectiles)))
@@ -49,7 +52,10 @@ class SimpleDataStorage(IDataStorage):
     def remove_data_of_projectiles(self, projectiles: list[ProjectileData]):
         if len(projectiles) > 0:
             for current_projectile in projectiles:
+                id_to_push = current_projectile.unique_id
                 self._projectiles.remove(current_projectile)
+                self.push_an_unique_id_back(id_to_push)
+
 
     def get_data_of_all_bodies_of_bots(self) -> list[BodyData]:
         return copy(self._bots)

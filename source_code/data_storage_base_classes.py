@@ -2,7 +2,7 @@
 from source_code.common_classes import *
 
 
-class IDataStorage:
+class IDataStorage(UniqueIDPool):
 
     # Functions to override in inherited classes:
 

@@ -78,7 +78,7 @@ class BotAiEngine:
             body_to_move.coordinates.y -= 1
 
     def _spawn_a_projectile_correspond_to_the_shoot_action(self, shoot_action: BotAction):
-        new_projectile = ProjectileData()
+        new_projectile = ProjectileData(self._data_storage.pop_unique_id())
         new_projectile.coordinates = copy.deepcopy(shoot_action.corresponded_bot.coordinates)
         new_projectile.direction = copy.deepcopy(shoot_action.direction)
         if shoot_action.direction is DirectionEnum.NO_DIRECTION:

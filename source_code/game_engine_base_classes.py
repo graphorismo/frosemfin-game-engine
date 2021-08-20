@@ -37,20 +37,23 @@ class GameEngine:
 
     # Test function to spawn something, temporary solution
     def _add_to_data_storage_a_bunch_of_entities(self):
-        bot1 = BodyData()
-        bot1.coordinates.x = 2
-        bot1.coordinates.y = 2
+
+        poped_id: int = self.data_storage.pop_unique_id()
+        bot1 = BodyData(poped_id, x=3, y=2, hp=1)
         self.data_storage.add_data_of_bodies_of_bots([bot1])
 
-        obstacle1 = BodyData()
-        obstacle1.coordinates.x = 5
-        obstacle1.coordinates.y = 5
+        poped_id = self.data_storage.pop_unique_id()
+        obstacle1 = BodyData(poped_id, x=4, y=5, hp=2)
         self.data_storage.add_data_of_bodies_of_obstacles([obstacle1])
 
-        player_body = BodyData()
-        player_body.coordinates.x = 8
-        player_body.coordinates.y = 8
+        poped_id = self.data_storage.pop_unique_id()
+        player_body = BodyData(poped_id, x=8, y=7, hp=10)
         self.data_storage.add_the_player_body_data(player_body)
+
+        poped_id = self.data_storage.pop_unique_id()
+        projectile = ProjectileData(poped_id, x=3, y=7, direction=DirectionEnum.DOWN)
+        self.data_storage.add_data_of_projectiles([projectile])
+
 
 
 class GameEngineBuilder:
