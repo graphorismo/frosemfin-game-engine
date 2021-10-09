@@ -1,0 +1,83 @@
+@startuml
+
+class App
+{ 
+
+}
+App --> GameRunnerBuilder
+App --> GameRunner
+
+
+abstract class AGameRunner
+{
+  # grathical_core: AGameCore
+  # phisical_core: AGameCore
+  # logical_core: AGameCore
+  # player_actions_core: AGameCore
+  # game_world: GameWorld
+}
+AGameRunner --> GameWorld
+AGameRunner --> AGameCore
+AGameRunner --> AGameCore
+AGameRunner --> AGameCore
+AGameRunner --> AGameCore
+
+class GameRunnerBuilder
+{
+  + set_graphical_core(core: AGameCore): void
+  + set_phisical_core(core: AGameCore): void
+  + set_logical_core(core: AGameCore): void
+  + set_player_actions_core(core: IPlayerActions): void
+  + make_game_runner(): GameRunner
+}
+GameRunnerBuilder -> GameRunner
+GameRunnerBuilder --|> AGameRunner
+
+
+class GameRunner
+{
+  # exit_flag: bool = false
+
+  + process_a_single_tick(): void
+  + check_exit_flag(): boolean
+  + load_game_world_from_file(file_path: String): void
+  + save_game_world_to_file(file_path: String): void
+}
+GameRunner --|> AGameRunner
+
+class GameWorld
+{
+  # entites: GameEnitty
+  # previous_tick_events: Collection<GameEvent>
+  # current_tick_events: Collection<GameEvent>
+
+  + spawn_blank_entity()
+  + spawn_entity_cloned_from(entity: GameEntity): void
+  + remove_entity(entity: GameEntity): void
+  + get_previous_tick_events(): Collection<GameEvent>
+  + add_to_current_tick_events(event: GameEvent): void
+  + add_to_current_tick_events(events: Collection<GameEvent>): void
+}
+GameWorld --> GameEvent
+GameWorld --> GameEntity
+
+
+abstract class AGameCore
+{
+  + put_game_world_to_handle(world: GameWorld)
+
+  + read_enities_data_from_world(world: GameWorld): void
+  + read_previous_tick_events_from_world(): void
+  + produce_own_current_tick_events(): void
+  + produce_new_entites_into_world(): void
+  + change_existing_entites_in_world(): void
+  + add_unhandled_own_events_into_world(): void
+  + clear_data()
+}
+AGameCore <|-- GraphicalCore
+AGameCore <|-- PhisicalCore 
+AGameCore <|-- LogicalCore
+AGameCore <|-- PlayerActionsCore
+
+
+@enduml

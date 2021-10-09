@@ -1,0 +1,18 @@
+
+  So, the main idea of the project's architecture were to have some simple
+core interfaces to be able to attach/dettach new realisations of those
+with no effort. 
+  We have main App class which starts GameEngineBuilder, pass nessesary
+realisations into it, get buildeed GameEngine and command it to process a
+single game tick at a time untill that GameEngine will not set 
+it's own finish flag.
+  In each tick the GameEngine pass a game world's data into each core
+sequentually. After all it also checks if exit event was produced and set
+finish flag correspond to it.
+  Each core read existing entites and events from the last tick from the
+passed into them game world, perform own reactions to those events, change
+depended entities and write own produced events into the game world's
+"current tick" events collection.
+
+  That is it for now.
+
