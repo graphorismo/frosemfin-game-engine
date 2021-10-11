@@ -4,7 +4,7 @@ class App
 { 
 
 }
-App --> GameRunnerBuilder
+App --> SomeGameRunner\nBuilderRealisation
 App --> GameRunner
 
 
@@ -18,20 +18,27 @@ abstract class AGameRunner
 }
 AGameRunner --> GameWorld
 AGameRunner --> AGameCore
-AGameRunner --> AGameCore
-AGameRunner --> AGameCore
-AGameRunner --> AGameCore
 
-class GameRunnerBuilder
+
+abstract class AGameRunnerBuilder
 {
-  + set_graphical_core(core: AGameCore): void
-  + set_phisical_core(core: AGameCore): void
-  + set_logical_core(core: AGameCore): void
-  + set_player_actions_core(core: IPlayerActions): void
   + make_game_runner(): GameRunner
+  
+  + {abstract} set_graphical_core(): void
+  + {abstract} set_phisical_core(): void
+  + {abstract} set_logical_core(): void
+  + {abstract} set_player_actions_core(): void
 }
-GameRunnerBuilder -> GameRunner
-GameRunnerBuilder --|> AGameRunner
+AGameRunnerBuilder -> GameRunner
+AGameRunnerBuilder --|> AGameRunner 
+
+
+class SomeGameRunner\nBuilderRealisation
+SomeGameRunner\nBuilderRealisation -|> AGameRunnerBuilder
+SomeGameRunner\nBuilderRealisation -----> SomeGraphical\nCoreRealisation
+SomeGameRunner\nBuilderRealisation -----> SomePhisical\nCoreRealisation
+SomeGameRunner\nBuilderRealisation -----> SomeLogical\nCoreRealisation
+SomeGameRunner\nBuilderRealisation -----> SomePlayerActions\nCoreRealisation
 
 
 class GameRunner
@@ -64,20 +71,105 @@ GameWorld --> GameEntity
 
 abstract class AGameCore
 {
-  + put_game_world_to_handle(world: GameWorld)
+  + set_game_world_ref_to_handle(world: GameWorld)
 
-  + read_enities_data_from_world(world: GameWorld): void
-  + read_previous_tick_events_from_world(): void
-  + produce_own_current_tick_events(): void
-  + produce_new_entites_into_world(): void
-  + change_existing_entites_in_world(): void
-  + add_unhandled_own_events_into_world(): void
-  + clear_data()
+  + {abstract} produce_own_current_tick_events(): void
+  + {abstract} produce_new_entites_into_world(): void
+  + {abstract} change_existing_entites_in_world(): void
+  + {abstract} add_unhandled_own_events_into_world(): void
+  + {abstract} clear_data()
 }
-AGameCore <|-- GraphicalCore
-AGameCore <|-- PhisicalCore 
-AGameCore <|-- LogicalCore
-AGameCore <|-- PlayerActionsCore
+AGameCore <|-- SomeGraphical\nCoreRealisation
+AGameCore <|-- SomePhisical\nCoreRealisation
+AGameCore <|-- SomeLogical\nCoreRealisation
+AGameCore <|-- SomePlayerActions\nCoreRealisation
 
 
-@enduml
+class GameEvent
+{	
+  # name: final string
+  # correspond_entities: Collection<GameEntity>
+  # correspond_values: Collection<float>
+  
+  + GameEvent(name: string)
+  
+  + get_name(): string
+  + get_correspond_entities(): Collection<GameEntity>
+  + get_correspond_values(): Collection<float>
+  
+  + add_correspond_entitie(value: GameEntity)
+  + add_correspond_values(value: float)
+}
+GameEvent -> GameEntity
+
+
+class GameEntity
+{
+  # position: Vector2i
+  # max_hp : int
+  # current_hp : int
+  # damage : int
+  # max_moves_count : int
+  # current_moves_count : int
+  # max_shoots_count : int
+  # current_shoots_count : int
+  
+  + get_position() : Vector2i
+  + get_max_hp() : int
+  + get_current_hp() : int
+  + get_damage() : int
+  + get_max_moves_count() : int
+  + get_current_moves_count() : int
+  + get_max_shoots_count() : int
+  + get_current_shoots_count() : int
+  
+  + set_position(value: Vector2i): void
+  + set_max_hp(value : int) : void
+  + set_current_hp(value : int) : void
+  + set_damage(value : int) : void
+  + set_max_moves_count(value : int) : void
+  + set_current_moves_count(value : int) : void
+  + set_max_shoots_count(value : int) : void
+  + set_current_shoots_count(value : int) : void
+}
+GameEntity o--> Vector2i
+
+
+class SomeGraphical\nCoreRealisation
+SomeGraphical\nCoreRealisation -[hidden] SomePhisical\nCoreRealisation
+
+class SomePhisical\nCoreRealisation
+SomePhisical\nCoreRealisation -[hidden] SomeLogical\nCoreRealisation
+
+class SomeLogical\nCoreRealisation
+SomeLogical\nCoreRealisation -[hidden] SomePlayerActions\nCoreRealisation
+
+class SomePlayerActions\nCoreRealisation
+
+
+class Vector2i
+{
+  # x: int
+  # y: int
+	
+  + get_x() : int
+  + get_y() : int
+	
+  + set_x(value : int) : void
+  + set_y(value : int) : void
+}
+
+
+note top of SomeGameRunner\nBuilderRealisation
+  Some builder realisation which know
+  about all nessesary cores' realisations
+end note
+
+
+note right of SomePlayerActions\nCoreRealisation
+  Some core realisations incapsulating
+  logic corresponding to cores' names
+end note
+
+
+@enduml Pla
