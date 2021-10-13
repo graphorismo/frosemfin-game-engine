@@ -1,17 +1,12 @@
-# tomigras-stupid-bots-world
-Сurrent state of project:
-	not so good by the reason of problems with early architecture planning, 
-	which causes a rapidly increasing messup level in the code for now.  
-	Possible solution: refactor architecture, until itis not too late.
-	
-Working features:
-- Draw a simple text-like picture of the world in tkinter window
-- Random acting bots available to shoot projectiles
-- Flying projectiles
-- Bounce from world borders
-	
-Requiring feature:
-- Player controlling using keyboard
-- World generator or editor
-- Destroying of projectiles on collision
-- Damage management on collisions of diffetent entities
+Frosemfin game engine
+ (from FROzen SEMi-FINished)
+
+DESCRIPTION:
+	  Semi-finished game engine growed from general idea of graphorismo and tomigras.
+	Current implemetation made on python 3.9.
+
+PURPOSE:
+	  To have a base project to test experimental game modules on.
+	  
+STATE:
+	  Finished architecture docs rework. Corresponding source code changes are incoming.
